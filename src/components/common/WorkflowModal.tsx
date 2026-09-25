@@ -30,9 +30,11 @@ export const WorkflowModal: React.FC = () => {
         {/* Modal Header */}
         <div className="bg-[#123B5D] text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-[#0c2942]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-[#1e5077] border border-[#C9A227]/40 flex items-center justify-center font-bold text-[#C9A227]">
-              +
-            </div>
+            <img
+              src="/logo.png"
+              alt="MedBill Pro"
+              className="w-9 h-9 rounded-lg object-contain bg-white p-0.5 border border-[#C9A227]/40 shrink-0"
+            />
             <div>
               <h2 className="text-lg font-bold">System Architecture & Workflow Diagram</h2>
               <p className="text-xs text-slate-300">

@@ -115,6 +115,15 @@ export const AdminLogin: React.FC<Props> = ({ onSwitchToStaff }) => {
 
           {/* Hospital Logo & Animated Professional Lock */}
           <div className="relative z-10 flex flex-col items-center">
+            {/* MedBill Pro Brand Logo */}
+            <div className="mb-3">
+              <img
+                src="/logo.png"
+                alt="MedBill Pro"
+                className="h-14 sm:h-16 w-auto object-contain bg-white rounded-2xl p-1.5 shadow-lg border-2 border-white/30"
+              />
+            </div>
+
             {/* Professional Animated Lock Hub */}
             <div className="relative mb-3">
               {/* Outer pulsing security ring */}

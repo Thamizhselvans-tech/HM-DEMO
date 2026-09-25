@@ -85,6 +85,15 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#C9A227]/15 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center">
+            {/* MedBill Pro Brand Logo */}
+            <div className="mb-3">
+              <img
+                src="/logo.png"
+                alt="MedBill Pro"
+                className="h-14 sm:h-16 w-auto object-contain bg-white rounded-2xl p-1.5 shadow-lg border-2 border-white/30"
+              />
+            </div>
+
             {/* Terminal Emblem & Animated Lock */}
             <div className="relative mb-3">
               {/* Pulsing security ring */}

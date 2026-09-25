@@ -31,14 +31,16 @@ function MainAppContent() {
       {!isAuthenticated && (
         <header className="bg-[#0c2942] border-b border-slate-700/60 px-3 sm:px-4 py-2 sm:py-2.5 flex flex-wrap items-center justify-between gap-2 sm:gap-3 shadow-md z-20">
           <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-[#159A9C] to-[#0c6466] flex items-center justify-center text-white font-black text-base sm:text-lg shadow-sm border border-teal-400/30">
-              +
-            </div>
+            <img
+              src="/logo.png"
+              alt="MedBill Pro"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-contain bg-white p-0.5 shadow-sm border border-teal-400/30 shrink-0"
+            />
             <div>
               <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white uppercase block leading-none">
-                MediCare Health
+                MedBill Pro
               </span>
-              <span className="text-[9px] sm:text-[10px] text-teal-300/80 font-medium">Enterprise Portal</span>
+              <span className="text-[9px] sm:text-[10px] text-teal-300/80 font-medium">Medical Billing Management</span>
             </div>
           </div>
 

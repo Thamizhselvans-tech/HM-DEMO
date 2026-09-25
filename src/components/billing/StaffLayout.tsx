@@ -128,13 +128,15 @@ export const StaffLayout: React.FC = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-0 min-h-14 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-3">
           {/* Brand & Terminal Info */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#159A9C] text-white flex items-center justify-center font-black text-base sm:text-lg shadow-xs shrink-0">
-              +
-            </div>
+            <img
+              src="/logo.png"
+              alt="MedBill Pro"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg object-contain bg-white p-0.5 shadow-2xs border border-slate-200 shrink-0"
+            />
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-extrabold text-white text-xs sm:text-sm tracking-tight leading-none">
-                  {settings?.hospitalName?.split(' ')[0] || 'MediCare'} POS
+                  {settings?.hospitalName?.split(' ')[0] || 'MedBill'} POS
                 </span>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1e5077] text-slate-100 border border-[#2b6594] flex items-center gap-1 max-w-[130px] sm:max-w-none truncate">
                   <Lock className="w-2.5 h-2.5 text-[#159A9C] shrink-0" />

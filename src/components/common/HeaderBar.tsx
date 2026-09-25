@@ -68,9 +68,11 @@ export const HeaderBar: React.FC = () => {
         {/* Left: Branding & Title */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#159A9C] text-white flex items-center justify-center font-black text-lg shadow-sm border border-white/20">
-              +
-            </div>
+            <img
+              src="/logo.png"
+              alt="MedBill Pro"
+              className="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow-sm border border-white/20 shrink-0"
+            />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-sm sm:text-base tracking-tight text-white leading-none">

@@ -81,9 +81,11 @@ export const InvoiceDetailModal: React.FC<Props> = ({ invoice, onClose }) => {
         <div className="p-6 text-xs text-slate-800" id="printable-invoice">
           {/* Medical Center Header */}
           <div className="text-center pb-4 border-b border-slate-200">
-            <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#123B5D] text-white font-black text-lg mb-1">
-              +
-            </div>
+            <img
+              src="/logo.png"
+              alt="MedBill Pro"
+              className="inline-block w-10 h-10 object-contain mb-1"
+            />
             <h2 className="text-base font-bold text-[#123B5D] tracking-tight uppercase">
               {settings?.hospitalName || 'HealthCare Medical Store'}
             </h2>

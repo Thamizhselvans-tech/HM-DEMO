@@ -480,9 +480,11 @@ export const AdminSettings: React.FC = () => {
             <div className="mt-3 bg-[#F8FAFC] border border-dashed border-slate-300 rounded-xl p-4 text-xs font-mono space-y-3 select-none">
               {/* Receipt Header */}
               <div className="text-center pb-3 border-b border-slate-200 font-sans">
-                <div className="inline-flex items-center justify-center w-7 h-7 rounded bg-[#123B5D] text-white font-black text-sm mb-1">
-                  +
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="MedBill Pro"
+                  className="inline-block w-8 h-8 object-contain mb-1"
+                />
                 <div className="font-extrabold text-[#123B5D] text-sm uppercase tracking-tight leading-tight">
                   {hospitalName.trim() || 'HOSPITAL NAME'}
                 </div>

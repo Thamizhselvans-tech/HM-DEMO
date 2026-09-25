@@ -133,12 +133,14 @@ export const AdminLayout: React.FC = () => {
           {/* Brand Hub */}
           <div className="h-14 px-4 border-b border-slate-200/80 flex items-center justify-between bg-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#123B5D] text-white flex items-center justify-center font-black text-base shadow-xs border border-[#C9A227]/30">
-                +
-              </div>
+              <img
+                src="/logo.png"
+                alt="MedBill Pro"
+                className="w-9 h-9 rounded-lg object-contain bg-white p-0.5 shadow-2xs border border-slate-200 shrink-0"
+              />
               <div>
-                <div className="font-extrabold text-[#123B5D] text-sm tracking-tight leading-none truncate max-w-[125px]" title={settings?.hospitalName || 'Central HQ'}>
-                  {settings?.hospitalName ? settings.hospitalName.split(' ')[0] + ' HQ' : 'Central HQ'}
+                <div className="font-extrabold text-[#123B5D] text-sm tracking-tight leading-none truncate max-w-[125px]" title={settings?.hospitalName || 'MedBill HQ'}>
+                  {settings?.hospitalName ? settings.hospitalName.split(' ')[0] + ' HQ' : 'MedBill HQ'}
                 </div>
                 <div className="text-[10px] text-[#159A9C] font-bold uppercase tracking-wider mt-0.5">
                   Admin Console
@@ -236,11 +238,13 @@ export const AdminLayout: React.FC = () => {
             >
               <div className="flex items-center justify-between pb-3 border-b border-slate-200">
                 <div className="flex items-center gap-2 font-bold text-[#123B5D] text-sm">
-                  <div className="w-7 h-7 bg-[#123B5D] text-white rounded-lg flex items-center justify-center font-bold">
-                    +
-                  </div>
-                  <span className="truncate max-w-[170px]" title={settings?.hospitalName || 'Central HQ'}>
-                    {settings?.hospitalName || 'MediCare Central HQ'}
+                  <img
+                    src="/logo.png"
+                    alt="MedBill Pro"
+                    className="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow-2xs border border-slate-200 shrink-0"
+                  />
+                  <span className="truncate max-w-[170px]" title={settings?.hospitalName || 'MedBill Central HQ'}>
+                    {settings?.hospitalName || 'MedBill Central HQ'}
                   </span>
                 </div>
                 <button
