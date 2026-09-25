@@ -125,108 +125,113 @@ export const StaffLayout: React.FC = () => {
     <div className="min-h-screen bg-[#F7FAFC] flex flex-col">
       {/* Terminal Header Bar */}
       <header className="bg-[#123B5D] border-b border-[#0c2942] sticky top-0 z-40 shadow-sm text-white">
-        <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-0 min-h-14 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-3">
           {/* Brand & Terminal Info */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#159A9C] text-white flex items-center justify-center font-black text-lg shadow-xs">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#159A9C] text-white flex items-center justify-center font-black text-base sm:text-lg shadow-xs shrink-0">
               +
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-white text-sm tracking-tight leading-none">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-extrabold text-white text-xs sm:text-sm tracking-tight leading-none">
                   {settings?.hospitalName?.split(' ')[0] || 'MediCare'} POS
                 </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1e5077] text-slate-100 border border-[#2b6594] flex items-center gap-1">
-                  <Lock className="w-2.5 h-2.5 text-[#159A9C]" />
-                  <span>{branchName}</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#1e5077] text-slate-100 border border-[#2b6594] flex items-center gap-1 max-w-[130px] sm:max-w-none truncate">
+                  <Lock className="w-2.5 h-2.5 text-[#159A9C] shrink-0" />
+                  <span className="truncate">{branchName}</span>
                 </span>
-                <span className="text-[9px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#159A9C]/25 text-[#159A9C] border border-[#159A9C]/40 hidden sm:inline-block">
+                <span className="text-[9px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#159A9C]/25 text-[#159A9C] border border-[#159A9C]/40 hidden md:inline-block">
                   BILLING_STAFF
                 </span>
               </div>
-              <div className="text-[11px] text-slate-300 flex items-center gap-1.5 mt-0.5">
-                <span>Cashier: <strong className="text-white">{staffName}</strong> {staffUsername ? `(@${staffUsername})` : ''}</span>
+              <div className="text-[10px] sm:text-[11px] text-slate-300 flex items-center gap-1.5 mt-0.5">
+                <span>Cashier: <strong className="text-white">{staffName}</strong> <span className="hidden sm:inline">{staffUsername ? `(@${staffUsername})` : ''}</span></span>
               </div>
             </div>
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto justify-end overflow-x-auto py-1 sm:py-0">
             <button
               onClick={() => setActiveView('create-bill')}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-xs cursor-pointer ${
+              className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-xs cursor-pointer shrink-0 ${
                 activeView === 'create-bill'
                   ? 'bg-[#0f7a7c] text-white ring-2 ring-white/30'
                   : 'bg-[#159A9C] text-white hover:bg-[#0f7a7c]'
               }`}
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>Billing Page</span>
+              <span className="hidden sm:inline">Billing Page</span>
+              <span className="sm:hidden">Bill</span>
             </button>
 
             <button
               onClick={() => setActiveView('dashboard')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer shrink-0 ${
                 activeView === 'dashboard'
                   ? 'bg-[#159A9C] text-white shadow-xs'
                   : 'text-slate-200 hover:bg-[#1e5077]'
               }`}
             >
-              Dashboard
+              <span className="hidden sm:inline">Dashboard</span>
+              <span className="sm:hidden">Dash</span>
             </button>
 
             <button
               onClick={() => setActiveView('history')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1 cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center gap-1 cursor-pointer shrink-0 ${
                 activeView === 'history'
                   ? 'bg-[#159A9C] text-white shadow-xs'
                   : 'text-slate-200 hover:bg-[#1e5077]'
               }`}
             >
               <History className="w-3.5 h-3.5" />
-              <span>Bill History</span>
+              <span className="hidden sm:inline">Bill History</span>
+              <span className="sm:hidden">History</span>
             </button>
 
-            <div className="h-5 w-[1px] bg-slate-600 mx-1 hidden sm:block" />
+            <div className="h-5 w-[1px] bg-slate-600 mx-0.5 sm:mx-1 hidden sm:block" />
 
             {/* Functional Counter Lock / Unlock Control */}
             {isCounterLocked ? (
               <button
                 type="button"
                 onClick={handleOpenUnlockModal}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-500/30 text-xs font-bold cursor-pointer transition-all shadow-xs"
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-500/30 text-xs font-bold cursor-pointer transition-all shadow-xs shrink-0"
                 title="Counter is locked. Click to unlock"
               >
                 <Lock className="w-3.5 h-3.5 text-amber-300" />
-                <span>🔒 Counter Locked</span>
+                <span className="hidden md:inline">🔒 Counter Locked</span>
+                <span className="md:hidden">Locked</span>
               </button>
             ) : (
               <button
                 type="button"
                 onClick={handleLockCounter}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30 text-xs font-semibold cursor-pointer transition-all shadow-xs"
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30 text-xs font-semibold cursor-pointer transition-all shadow-xs shrink-0"
                 title="Counter is unlocked. Click to lock"
               >
                 <Unlock className="w-3.5 h-3.5 text-emerald-300" />
-                <span>🔓 Counter Unlocked</span>
+                <span className="hidden md:inline">🔓 Counter Unlocked</span>
+                <span className="md:hidden">Unlocked</span>
               </button>
             )}
 
             {/* Logout / Sign Out */}
             <button
               onClick={logout}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-[#D95C5C] transition-colors text-xs font-semibold cursor-pointer"
+              className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-[#D95C5C] transition-colors text-xs font-semibold cursor-pointer shrink-0"
               title="Sign Out of Terminal"
             >
-              <LogOut className="w-4 h-4" />
-              <span className="hidden sm:inline">Logout</span>
+              <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="hidden md:inline">Logout</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Terminal View Content */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 relative">
+      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 md:p-6 relative">
         {/* Active Billing View */}
         <div className={isCounterLocked ? 'opacity-40 pointer-events-none select-none filter blur-[1px] transition-all' : 'transition-all'}>
           {activeView === 'dashboard' && (

@@ -24,29 +24,29 @@ function MainAppContent() {
   return (
     <div
       className={`${
-        isAdmin ? 'h-screen overflow-hidden' : 'min-h-screen'
+        isAdmin ? 'lg:h-screen lg:overflow-hidden min-h-screen' : 'min-h-screen'
       } bg-[#F7FAFC] flex flex-col font-sans text-slate-800 antialiased selection:bg-[#159A9C]/20 selection:text-[#123B5D]`}
     >
       {/* Portal Switcher Bar when unauthenticated */}
       {!isAuthenticated && (
-        <header className="bg-[#0c2942] border-b border-slate-700/60 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-md z-20">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#159A9C] to-[#0c6466] flex items-center justify-center text-white font-black text-lg shadow-sm border border-teal-400/30">
+        <header className="bg-[#0c2942] border-b border-slate-700/60 px-3 sm:px-4 py-2 sm:py-2.5 flex flex-wrap items-center justify-between gap-2 sm:gap-3 shadow-md z-20">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-[#159A9C] to-[#0c6466] flex items-center justify-center text-white font-black text-base sm:text-lg shadow-sm border border-teal-400/30">
               +
             </div>
             <div>
-              <span className="font-extrabold text-sm tracking-tight text-white uppercase block leading-none">
+              <span className="font-extrabold text-xs sm:text-sm tracking-tight text-white uppercase block leading-none">
                 MediCare Health
               </span>
-              <span className="text-[10px] text-teal-300/80 font-medium">Enterprise Portal</span>
+              <span className="text-[9px] sm:text-[10px] text-teal-300/80 font-medium">Enterprise Portal</span>
             </div>
           </div>
 
-          <div className="bg-slate-900/90 p-1 rounded-xl flex items-center gap-1 border border-slate-700/80 shadow-inner relative">
+          <div className="bg-slate-900/90 p-1 rounded-xl flex items-center gap-1 border border-slate-700/80 shadow-inner relative w-full sm:w-auto justify-center order-3 sm:order-2">
             <button
               type="button"
               onClick={() => setLoginRole('admin')}
-              className={`relative px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer z-10 ${
+              className={`relative px-3 sm:px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer z-10 flex-1 sm:flex-initial text-center ${
                 loginRole === 'admin' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -57,15 +57,16 @@ function MainAppContent() {
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5" />
-                Central Admin Portal
+              <span className="flex items-center justify-center gap-1.5">
+                <Lock className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Central Admin Portal</span>
+                <span className="sm:hidden">Admin</span>
               </span>
             </button>
             <button
               type="button"
               onClick={() => setLoginRole('staff')}
-              className={`relative px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer z-10 ${
+              className={`relative px-3 sm:px-4 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer z-10 flex-1 sm:flex-initial text-center ${
                 loginRole === 'staff' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -76,14 +77,15 @@ function MainAppContent() {
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5" />
-                Billing Staff Portal
+              <span className="flex items-center justify-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Billing Staff Portal</span>
+                <span className="sm:hidden">Staff POS</span>
               </span>
             </button>
           </div>
 
-          <div className="hidden md:flex items-center gap-2 text-[11px] text-emerald-400 font-medium bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full">
+          <div className="hidden md:flex items-center gap-2 text-[11px] text-emerald-400 font-medium bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-full order-2 sm:order-3">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>256-Bit SSL Workstation Active</span>
           </div>
@@ -93,11 +95,11 @@ function MainAppContent() {
       {/* Main Views */}
       <div
         className={`flex-1 flex flex-col bg-[#F7FAFC] ${
-          isAdmin ? 'h-full overflow-hidden' : ''
+          isAdmin ? 'lg:h-full lg:overflow-hidden' : ''
         }`}
       >
         {!isAuthenticated ? (
-          <main className="flex-1 flex items-center justify-center p-4 relative overflow-hidden bg-gradient-to-b from-slate-100/80 via-[#F7FAFC] to-slate-200/50">
+          <main className="flex-1 flex items-center justify-center p-3 sm:p-4 relative overflow-hidden bg-gradient-to-b from-slate-100/80 via-[#F7FAFC] to-slate-200/50">
             {/* Subtle animated background radial glows */}
             <div className="absolute top-1/4 -left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#123B5D]/10 rounded-full blur-3xl pointer-events-none" />

@@ -126,8 +126,8 @@ export const AdminLayout: React.FC = () => {
   }
 
   return (
-    <div className="h-screen bg-[#F7FAFC] flex flex-col overflow-hidden">
-      <div className="flex flex-1 h-full overflow-hidden">
+    <div className="min-h-screen lg:h-screen bg-[#F7FAFC] flex flex-col overflow-x-hidden lg:overflow-hidden">
+      <div className="flex flex-1 min-h-0 lg:h-full lg:overflow-hidden">
         {/* Sidebar for Desktop matching Screen 5 */}
         <aside className="hidden lg:flex flex-col w-64 h-full shrink-0 bg-white border-r border-slate-200/80 shadow-xs select-none z-30">
           {/* Brand Hub */}
@@ -303,41 +303,42 @@ export const AdminLayout: React.FC = () => {
         )}
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden bg-[#F7FAFC]">
+        <div className="flex-1 flex flex-col min-w-0 min-h-0 lg:h-full lg:overflow-hidden bg-[#F7FAFC]">
           {/* Top Bar for Mobile & Breadcrumbs with crisp h-12 (48px) height */}
-          <div className="bg-white border-b border-slate-200/80 px-4 h-12 flex items-center justify-between shadow-2xs shrink-0">
-            <div className="flex items-center gap-2.5">
+          <div className="bg-white border-b border-slate-200/80 px-3 sm:px-4 h-12 flex items-center justify-between shadow-2xs shrink-0">
+            <div className="flex items-center gap-2 sm:gap-2.5">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
+                className="lg:hidden p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 cursor-pointer"
+                aria-label="Open navigation menu"
               >
                 <Menu className="w-4 h-4" />
               </button>
               <div className="flex items-center gap-1.5 text-xs text-slate-500">
                 <span className="text-slate-400">Admin</span>
                 <ChevronRight className="w-3.5 h-3.5 text-slate-300" />
-                <span className="font-bold text-[#123B5D] capitalize">
+                <span className="font-bold text-[#123B5D] capitalize truncate max-w-[140px] sm:max-w-none">
                   {currentAdminTab.replace('-', ' ')}
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2 sm:gap-2.5">
               {lowStockCount > 0 && (
                 <button
                   onClick={() => setCurrentAdminTab('low-stock')}
-                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#faecec] text-[#D95C5C] border border-[#D95C5C]/30 text-xs font-semibold hover:bg-[#faecec]/80 transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-md bg-[#faecec] text-[#D95C5C] border border-[#D95C5C]/30 text-xs font-semibold hover:bg-[#faecec]/80 transition-colors cursor-pointer"
                 >
                   <AlertTriangle className="w-3.5 h-3.5 text-[#D95C5C]" />
                   <span className="hidden sm:inline">{lowStockCount} Low Stock Alerts</span>
-                  <span className="sm:hidden font-mono">{lowStockCount}</span>
+                  <span className="sm:hidden font-mono text-[11px] font-bold">{lowStockCount}</span>
                 </button>
               )}
             </div>
           </div>
 
           {/* Active Screen View */}
-          <main className="flex-1 p-4 md:p-6 overflow-y-auto bg-[#F7FAFC]">
+          <main className="flex-1 p-3 sm:p-4 md:p-6 overflow-y-auto bg-[#F7FAFC]">
             <div className="max-w-7xl mx-auto">
               {currentAdminTab === 'dashboard' && <AdminDashboard />}
               {currentAdminTab === 'branches' && <BranchManagement />}

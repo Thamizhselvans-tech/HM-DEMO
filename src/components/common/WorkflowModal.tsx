@@ -25,10 +25,10 @@ export const WorkflowModal: React.FC = () => {
   const lowStockCount = getLowStockAlerts().length;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full border border-slate-200 overflow-hidden my-6 max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full border border-slate-200 overflow-hidden my-3 sm:my-6 max-h-[96vh] sm:max-h-[92vh] flex flex-col">
         {/* Modal Header */}
-        <div className="bg-[#123B5D] text-white px-6 py-4 flex items-center justify-between border-b border-[#0c2942]">
+        <div className="bg-[#123B5D] text-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between border-b border-[#0c2942]">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-[#1e5077] border border-[#C9A227]/40 flex items-center justify-center font-bold text-[#C9A227]">
               +

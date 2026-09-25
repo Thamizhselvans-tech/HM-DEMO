@@ -120,7 +120,7 @@ export const InvoiceDetailModal: React.FC<Props> = ({ invoice, onClose }) => {
           </div>
 
           {/* Items Table matching Screen 12 */}
-          <div className="py-3">
+          <div className="py-3 overflow-x-auto">
             <table className="w-full text-xs text-left">
               <thead>
                 <tr className="border-b border-slate-300 text-slate-600 uppercase text-[10px]">
