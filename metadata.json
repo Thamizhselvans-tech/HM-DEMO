@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Branch Hospital / Clinic Billing & Stock Management System",
+  "description": "Centralized multi-branch medical billing, real-time stock depletion, branch inventory thresholds, staff management, and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-navy: #123B5D;
+    --color-teal: #159A9C;
+    --color-ivory: #F7FAFC;
+    --color-white: #FFFFFF;
+    --color-gold: #C9A227;
+    --color-emerald: #2E8B70;
+    --color-amber: #D99A24;
+    --color-coral: #D95C5C;
+  }
+
+  body {
+    background-color: #F7FAFC;
+    color: #1e293b;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Premium Healthcare Custom Utility Classes */
+.bg-navy-main {
+  background-color: #123B5D;
+}
+.bg-navy-dark {
+  background-color: #0c2942;
+}
+.bg-navy-light {
+  background-color: #1a4d78;
+}
+.bg-navy-subtle {
+  background-color: #eaf2f8;
+}
+
+.text-navy-main {
+  color: #123B5D;
+}
+
+.border-navy-main {
+  border-color: #123B5D;
+}
+
+.bg-teal-main {
+  background-color: #159A9C;
+}
+.bg-teal-hover:hover {
+  background-color: #0f7a7c;
+}
+.text-teal-main {
+  color: #159A9C;
+}
+.border-teal-main {
+  border-color: #159A9C;
+}
+.bg-teal-subtle {
+  background-color: #eef8f8;
+}
+
+.text-gold-accent {
+  color: #C9A227;
+}
+.bg-gold-subtle {
+  background-color: #fbf6e8;
+}
+.border-gold-subtle {
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+.text-emerald-soft {
+  color: #2E8B70;
+}
+.bg-emerald-subtle {
+  background-color: #edf7f4;
+}
+.border-emerald-soft {
+  border-color: rgba(46, 139, 112, 0.3);
+}
+
+.text-amber-warning {
+  color: #D99A24;
+}
+.bg-amber-subtle {
+  background-color: #fdf6e9;
+}
+.border-amber-warning {
+  border-color: rgba(217, 154, 36, 0.3);
+}
+
+.text-coral-danger {
+  color: #D95C5C;
+}
+.bg-coral-subtle {
+  background-color: #faecec;
+}
+.border-coral-danger {
+  border-color: rgba(217, 92, 92, 0.3);
+}
+
+@media print {
+  /* Hide standard page elements and action controls */
+  header,
+  nav,
+  aside,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Make customer invoice and central admin slips print-ready */
+  #printable-customer-invoice,
+  #printable-invoice {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  #printable-customer-invoice *,
+  #printable-invoice * {
+    color: black !important;
+  }
+}
+
