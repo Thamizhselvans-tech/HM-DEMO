@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   User,
   Lock,
+  Unlock,
   Building2,
   LogIn,
   Eye,
@@ -11,9 +12,12 @@ import {
   HelpCircle,
   ArrowRight,
   ShieldCheck,
+  Shield,
   X,
   KeyRound,
+  LockKeyhole,
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useApp } from '../../context/AppContext';
 
 interface Props {
@@ -64,35 +68,109 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
     setErrorMessage(null);
   };
 
-  return (
-    <div className="w-full max-w-md mx-auto my-6 animate-in fade-in duration-300">
-      {/* Main Staff Login Card */}
-      <div className="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-200/90 overflow-hidden">
-        {/* Header: Dedicated Billing Staff Terminal Header */}
-        <div className="bg-[#123B5D] px-8 pt-8 pb-7 text-white text-center relative overflow-hidden border-b border-[#0c2942]">
-          {/* Subtle gradient pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent pointer-events-none" />
+  const isPasswordReady = password.length >= 4;
 
-          <div className="relative z-10">
-            {/* Terminal Emblem */}
-            <div className="w-14 h-14 bg-white text-[#159A9C] rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md border-2 border-[#159A9C]/40">
-              <Building2 className="w-7 h-7 text-[#159A9C]" />
+  return (
+    <motion.div
+      animate={errorMessage ? { x: [-8, 8, -6, 6, -3, 3, 0] } : { x: 0 }}
+      transition={{ duration: 0.45 }}
+      className="w-full max-w-md mx-auto my-6"
+    >
+      {/* Main Staff Login Card */}
+      <div className="bg-white rounded-3xl shadow-2xl shadow-slate-900/10 border border-slate-200/90 overflow-hidden transition-all duration-300">
+        {/* Header: Dedicated Billing Staff Terminal Header with Animated Lock */}
+        <div className="bg-gradient-to-br from-[#0c2942] via-[#123B5D] to-[#154c79] px-8 pt-8 pb-7 text-white text-center relative overflow-hidden border-b border-[#0c2942]">
+          {/* Subtle gradient pattern */}
+          <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#159A9C]/20 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#C9A227]/15 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Terminal Emblem & Animated Lock */}
+            <div className="relative mb-3">
+              {/* Pulsing security ring */}
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.35, 0.7, 0.35],
+                  rotate: isLoading ? 360 : 0,
+                }}
+                transition={{
+                  scale: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+                  opacity: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
+                  rotate: { duration: 1.5, repeat: Infinity, ease: 'linear' },
+                }}
+                className={`absolute -inset-2 rounded-2xl border-2 ${
+                  errorMessage
+                    ? 'border-red-400/60'
+                    : isPasswordReady
+                    ? 'border-emerald-400/60'
+                    : 'border-[#159A9C]/40'
+                } pointer-events-none`}
+              />
+
+              <div className="w-16 h-16 bg-white text-[#159A9C] rounded-2xl flex items-center justify-center shadow-lg border-2 border-[#159A9C]/40 relative overflow-hidden">
+                <AnimatePresence mode="wait">
+                  {isLoading ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ scale: 0.5, rotate: -90, opacity: 0 }}
+                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                      exit={{ scale: 0.5, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Loader2 className="w-7 h-7 text-[#159A9C] animate-spin" />
+                    </motion.div>
+                  ) : showPassword ? (
+                    <motion.div
+                      key="unlock"
+                      initial={{ scale: 0.7, rotate: -20, opacity: 0 }}
+                      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                      exit={{ scale: 0.7, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Unlock className="w-7 h-7 text-[#C9A227]" />
+                    </motion.div>
+                  ) : isPasswordReady ? (
+                    <motion.div
+                      key="locked-secure"
+                      initial={{ scale: 0.7, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.7, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative"
+                    >
+                      <LockKeyhole className="w-7 h-7 text-emerald-600" />
+                      <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="terminal-icon"
+                      initial={{ scale: 0.7, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.7, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Building2 className="w-7 h-7 text-[#159A9C]" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             <div className="inline-block">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#C9A227] border border-[#C9A227]/40 px-2 py-0.5 rounded-full bg-[#C9A227]/15">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#C9A227] border border-[#C9A227]/40 px-2.5 py-0.5 rounded-full bg-[#C9A227]/15 shadow-xs">
                 Hospital Billing Counter
               </span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white mt-2 leading-none uppercase">
+            <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white mt-2 leading-none uppercase">
               BILLING STAFF PORTAL
             </h1>
             <p className="text-xs text-slate-300 font-medium mt-1.5">
               {settings?.hospitalName || 'MediCare Hospital & Healthcare Network'}
             </p>
 
-            <div className="inline-flex items-center gap-1.5 mt-3 bg-white/10 px-3 py-1 rounded-full text-[11px] text-slate-200 border border-white/15">
+            <div className="inline-flex items-center gap-1.5 mt-3.5 bg-white/10 px-3.5 py-1 rounded-full text-[11px] text-slate-200 border border-white/15 backdrop-blur-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-[#159A9C]" />
               <span>Automated Branch Assignment on Sign-In</span>
             </div>
@@ -157,15 +235,40 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
               </div>
             </div>
 
-            {/* Password Input */}
+            {/* Password Input with Show/Hide Toggle & Live Lock Status */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label
-                  htmlFor="staff-password"
-                  className="block text-xs font-semibold text-slate-700"
-                >
-                  Password
-                </label>
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor="staff-password"
+                    className="block text-xs font-semibold text-slate-700"
+                  >
+                    Password
+                  </label>
+                  {password.length > 0 && (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-1 border ${
+                        isPasswordReady
+                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          : 'bg-amber-50 text-amber-700 border-amber-200'
+                      }`}
+                    >
+                      {isPasswordReady ? (
+                        <>
+                          <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                          <span>Terminal Key Ready</span>
+                        </>
+                      ) : (
+                        <>
+                          <Lock className="w-3 h-3 text-amber-600" />
+                          <span>Min 4 Chars</span>
+                        </>
+                      )}
+                    </motion.span>
+                  )}
+                </div>
                 <button
                   type="button"
                   onClick={() => setShowForgotModal(true)}
@@ -176,7 +279,7 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <Lock className="w-4 h-4" />
+                  <Lock className={`w-4 h-4 transition-colors ${isPasswordReady ? 'text-emerald-500' : 'text-slate-400'}`} />
                 </div>
                 <input
                   id="staff-password"
@@ -189,7 +292,11 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
                     if (errorMessage) setErrorMessage(null);
                   }}
                   placeholder="••••••••••••"
-                  className="w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#159A9C] focus:border-[#159A9C] bg-[#F7FAFC] text-slate-900 transition-colors disabled:opacity-60 disabled:cursor-not-allowed placeholder:text-slate-400 font-medium"
+                  className={`w-full pl-9 pr-10 py-2.5 text-xs sm:text-sm rounded-xl border focus:outline-none transition-all disabled:opacity-60 disabled:cursor-not-allowed placeholder:text-slate-400 font-medium ${
+                    isPasswordReady
+                      ? 'border-emerald-300 focus:ring-2 focus:ring-[#159A9C] focus:border-[#159A9C] bg-white text-slate-900 shadow-xs'
+                      : 'border-slate-300 focus:ring-2 focus:ring-[#159A9C] focus:border-[#159A9C] bg-[#F7FAFC] text-slate-900'
+                  }`}
                 />
                 <button
                   type="button"
@@ -197,8 +304,9 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
                   disabled={isLoading}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 transition-colors disabled:opacity-50 cursor-pointer"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  title={showPassword ? 'Hide password' : 'Show password'}
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-4 h-4 text-[#C9A227]" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -215,15 +323,20 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
                 />
                 <span className="text-xs text-slate-600 font-medium">Remember terminal session</span>
               </label>
-              <span className="text-[11px] text-slate-400 font-mono">Counter POS</span>
+              <span className="text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
+                <Shield className="w-3 h-3 text-emerald-500" />
+                POS Counter Active
+              </span>
             </div>
 
             {/* Submit LOGIN Button */}
             <div className="pt-2">
-              <button
+              <motion.button
+                whileHover={{ scale: isLoading ? 1 : 1.012 }}
+                whileTap={{ scale: isLoading ? 1 : 0.985 }}
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-2.5 px-4 bg-[#159A9C] hover:bg-[#0f7a7c] active:bg-[#0c6466] text-white rounded-xl font-bold text-xs sm:text-sm shadow-md shadow-[#159A9C]/20 hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-2.5 px-4 bg-gradient-to-r from-[#159A9C] via-[#108385] to-[#0c6466] hover:from-[#138d8f] hover:to-[#0a5254] text-white rounded-xl font-bold text-xs sm:text-sm shadow-lg shadow-[#159A9C]/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed border border-teal-400/30"
               >
                 {isLoading ? (
                   <>
@@ -232,11 +345,11 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
                   </>
                 ) : (
                   <>
-                    <LogIn className="w-4 h-4 text-white" />
-                    <span>LOGIN</span>
+                    <Lock className="w-4 h-4 text-white" />
+                    <span>OPEN COUNTER TERMINAL</span>
                   </>
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
 
@@ -246,30 +359,36 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
               Quick Test Billing Staff (Password: password123)
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <button
+              <motion.button
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
                 type="button"
                 onClick={() => handleFillDemo('arun')}
-                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer"
+                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer shadow-xs"
               >
                 <div className="font-bold text-[#159A9C]">arun</div>
                 <div className="text-[10px] text-slate-500 truncate">Branch 1 (Chennai)</div>
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
                 type="button"
                 onClick={() => handleFillDemo('priya')}
-                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer"
+                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer shadow-xs"
               >
                 <div className="font-bold text-[#159A9C]">priya</div>
                 <div className="text-[10px] text-slate-500 truncate">Branch 2 (Cbe)</div>
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
                 type="button"
                 onClick={() => handleFillDemo('karthik')}
-                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer"
+                className="p-2 text-center rounded-xl border border-slate-200 hover:bg-[#eef8f8] hover:border-[#159A9C]/40 text-slate-700 text-xs transition-colors cursor-pointer shadow-xs"
               >
                 <div className="font-bold text-[#159A9C]">karthik</div>
                 <div className="text-[10px] text-slate-500 truncate">Branch 3 (Clinic)</div>
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -284,6 +403,15 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
               <ArrowRight className="w-3.5 h-3.5 text-[#159A9C]" />
             </button>
           </div>
+        </div>
+
+        {/* Security & Compliance Footer */}
+        <div className="bg-slate-50 px-6 py-2.5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-medium">
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#159A9C]" />
+            <span>Multi-Branch POS Isolation</span>
+          </div>
+          <span>Counter Audit Session Active</span>
         </div>
       </div>
 
@@ -341,6 +469,6 @@ export const StaffLogin: React.FC<Props> = ({ onSwitchToAdmin }) => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
